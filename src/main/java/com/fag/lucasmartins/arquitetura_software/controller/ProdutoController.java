@@ -1,5 +1,7 @@
 package com.fag.lucasmartins.arquitetura_software.controller;
 
+import com.fag.lucasmartins.arquitetura_software.DTO.ProdutoDTO;
+import com.fag.lucasmartins.arquitetura_software.Interfaces.IProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,27 +17,19 @@ import java.util.Map;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
+    private IProdutoService produtoService;
+
+    public ProdutoController(IProdutoService produtoService) {
+        this.produtoService = produtoService;
+    }
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @PostMapping
-    public ResponseEntity<Object> cadastrarProduto(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<ProdutoDTO> cadastrarProduto(@RequestBody ProdutoDTO produto) {
+
         try {
-            String nome = (String) payload.get("nome");
-            Integer estoque = (Integer) payload.get("estoque");
-            double preco = (double) payload.get("preco");
-
-            if (nome != null && nome.toLowerCase().contains("premium")) {
-                if (preco < 100.0) {
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro: Produtos Premium não podem custar menos de R$ 100,00.");
-                }
-            }
-            double precoFinal = preco;
-            if (estoque != null && estoque >= 50) {
-                precoFinal = preco - (preco * 0.10); // 10%
-            }
-
             String sqlInsertPedido = "INSERT INTO produto (nome, preco, preco_final, estoque) VALUES (?, ?, ?, ?)";
             jdbcTemplate.update(sqlInsertPedido, nome, preco, precoFinal, estoque);
 
