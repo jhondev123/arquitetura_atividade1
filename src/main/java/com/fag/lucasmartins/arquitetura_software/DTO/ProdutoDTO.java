@@ -1,14 +1,30 @@
 package com.fag.lucasmartins.arquitetura_software.DTO;
 
-public class ProdutoDTO {
-    public String nome;
-    public Integer estoque;
-    public double preco;
+import javax.validation.constraints.*;
 
-    public ProdutoDTO(String nome, Integer estoque, double preco) {
+public class ProdutoDTO {
+    @NotBlank(message = "O nome não pode estar em branco")
+    public String nome;
+    @NotNull(message = "O estoque é obrigatório")
+    @Min(value = 0, message = "O estoque não pode ser negativo")
+    public Integer estoque;
+    @Positive(message = "O preço deve ser maior que zero")
+    public double preco;
+    public long id;
+
+    public ProdutoDTO(long id, String nome, Integer estoque, double preco) {
+        this.id = id;
         this.nome = nome;
         this.estoque = estoque;
         this.preco = preco;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNome() {
