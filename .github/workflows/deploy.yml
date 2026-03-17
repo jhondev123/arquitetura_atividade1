@@ -3,7 +3,7 @@ name: Deploy to App Runner
 on:
   push:
     branches:
-      - master  # Verifique se sua branch é 'master' ou 'main' no GitHub
+      - master
 
 jobs:
   deploy:
@@ -31,7 +31,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy to Amazon App Runner
-        uses: awslabs/amazon-apprunner-deploy@main
+        uses: awslabs/amazon-app-runner-deploy@main
         with:
           service: arquitetura_atividade1
           region: us-east-1
