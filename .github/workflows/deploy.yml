@@ -34,5 +34,14 @@ jobs:
         uses: awslabs/amazon-app-runner-deploy@main
         with:
           service: arquitetura_atividade1
+          source-connection-arn: ${{ secrets.AWS_CONNECTION_SOURCE_ARN }}
+          repo: https://github.com/${{ github.repository }}
+          branch: master
+          runtime: CORRETTO_11
+          build-command: mvn clean package -DskipTests
+          start-command: java -jar target/*.jar
+          port: 8080
           region: us-east-1
+          cpu: 1
+          memory: 2
           wait-for-service-stability-seconds: 600
