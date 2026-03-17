@@ -1,22 +1,18 @@
-package com.fag.lucasmartins.arquitetura_software.controller;
+package com.fag.lucasmartins.arquitetura_software.Controller;
 
 import com.fag.lucasmartins.arquitetura_software.BO.ProdutoBO;
 import com.fag.lucasmartins.arquitetura_software.DTO.Common.ResponseError;
 import com.fag.lucasmartins.arquitetura_software.DTO.ProdutoDTO;
 import com.fag.lucasmartins.arquitetura_software.Interfaces.IProdutoService;
-import com.fag.lucasmartins.arquitetura_software.controller.mapper.ProdutoDTOMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fag.lucasmartins.arquitetura_software.Controller.mapper.ProdutoDTOMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/produtos")

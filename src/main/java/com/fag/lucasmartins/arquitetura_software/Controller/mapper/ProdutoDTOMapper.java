@@ -1,4 +1,4 @@
-package com.fag.lucasmartins.arquitetura_software.controller.mapper;
+package com.fag.lucasmartins.arquitetura_software.Controller.mapper;
 
 import com.fag.lucasmartins.arquitetura_software.BO.ProdutoBO;
 import com.fag.lucasmartins.arquitetura_software.DTO.ProdutoDTO;
